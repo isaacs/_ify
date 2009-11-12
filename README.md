@@ -26,7 +26,7 @@ You could even remove all global references to \_ and \_\_\_, and just use them 
 The \_.unload() function returns an object with references to \_ and \_\_\_, so you can
 do whatever you want with that. For instance:
 
-	var myUnderscore = \_.unload();
+	var myUnderscore = _.unload();
 
 and then \_ is at `myUnderscore._` and \_\_\_ is on `myUnderscore.___`, and you can use
 them just as if they were the globals.
