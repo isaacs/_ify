@@ -1,0 +1,31 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<title>_ify</title>
+</head>
+<body>
+
+<p>This is the place with the fun testy tests.  Play in the console with the log function.</p>
+
+<script src="_ify.js"></script>
+<script>
+function sum () {
+	for (var i = 0, s = 0, l = arguments.length; i < l; i ++) s += i;
+	return s;
+};
+function assert (cond, msg) { if (!cond) throw new Error(msg || "Assertion failed") };
+function log () {
+	console.log(this, arguments);
+	return arguments;
+}
+
+log._(1, _, 2, _, 3)("insert first")("insert second");
+_(log)(1, _, 2, _, 3)("insert first")("insert second");
+log._(1,___,2)(3,4,5,6);
+log._(1, _, 2, _, 3)("insert first", "insert second");
+
+</script>
+
+<p></body>
+</html></p>
