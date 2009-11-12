@@ -105,7 +105,7 @@ function fixArgs (fn, fixedArgs, scope) { return function _ified () {
 	else if (
 		fixedArgs[f] === ___ // fill with the rest
 	) newArgs = newArgs.concat(
-		a < al ? arr(arguments, a)
+		a < al && arguments[a] !== ___ ? arr(arguments, a)
 		: ___
 	), a = al;
 	else newArgs.push(fixedArgs[f]);
