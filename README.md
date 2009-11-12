@@ -14,23 +14,6 @@ appropriately.  When all the holes are filled, it executes the function.
 
 A triple-underbar \_\_\_ is a bigger hole.  The remaining arguments all fall into it.
 
-You can use the \_.load and \_.unload functions to swap out new symbols.  Maybe you like
-to call them $ and $$$ instead of \_ and \_\_\_.  That's cool.  Just do this:
-\_.unload.load({\_:"$", \_\_\_:"$$$"})
-Any string is fine, but some will lead to uglier code, of course.  This is not pretty:
-
-	myFunction["BLΩRHEHA(F#HA(HFZZXNBFZ..#H(A"](window["BLΩRHEHA(F#HA(HFZZXNBFZ..#H(A"], 2)
-
-But ƒ or µ are valid identifiers and reasonably pretty and easy to type (on a mac)
-You could even remove all global references to \_ and \_\_\_, and just use them as private vars.
-The \_.unload() function returns an object with references to \_ and \_\_\_, so you can
-do whatever you want with that. For instance:
-
-	var myUnderscore = _.unload();
-
-and then \_ is at `myUnderscore._` and \_\_\_ is on `myUnderscore.___`, and you can use
-them just as if they were the globals.
-
 Enough talk. Example time!
 
 	function timesSquared (x, y) { return x * y * y }
@@ -106,4 +89,33 @@ And of course, this works, too:
 
 	f.___(obj, 1)(_, 2)(3) ==> f.call(obj, 1, 3, 2)
 
+## But I don't like \_ and \_\_\_ (or I'm already using them for something else)
+
+That's fine.  You can use the \_.load and \_.unload functions to swap out new symbols.  Maybe you like
+to call them $ and $$$ instead of \_ and \_\_\_.  Great.  Just do this:
+
+	\_.unload.load({\_:"$", \_\_\_:"$$$"})
+
+Any string is fine, but some will lead to uglier code, of course.  This is not pretty:
+
+	myFunction["BLΩRHEHA(F#HA(HFZZXNBFZ..#H(A"](window["BLΩRHEHA(F#HA(HFZZXNBFZ..#H(A"], 2)
+
+`ƒ` and `µ` are valid and pretty identifiers and reasonably pretty and easy to type (on a mac).
+You could even remove all global references to \_ and \_\_\_, and just use them as private vars.
+The \_.unload() function returns an object with references to \_ and \_\_\_, so you can
+do whatever you want with that. For instance:
+
+	var myUnderscore = _.unload();
+
+and then \_ is at `myUnderscore._` and \_\_\_ is on `myUnderscore.___`, and you can use
+them just as if they were the globals.  For example:
+
+	_.unload.load({ _ : "$", ___ : "derp" }); // unload the globals, and load the new ones.
+	$(f)(1,2,3) ==> f(1,2,3)
+	$(f)(1,$,2)(3) ==> f(1,3,2)
+	f.$(1,$,2)(3,$)($,4)(5) ==> f.$(1,3,2,$)($,4)(5) ==> f.$(1,3,2,$,4)(5) ==> f(1,3,2,5,4)
+	f.derp(obj, $, 1)(2) ==> f.call(obj, 2, 1)
+	f.$(derp, 1, 2)(4,5,6) ==> f(4,5,6,1,2)
+
+Basically, you'd just be changing the symbol that's used in all the examples below.  From now on, I'm going to use `_` and `___`, because think those are prettiest.
 
