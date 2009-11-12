@@ -85,12 +85,11 @@ function curry (fn, args, scope, call) {
 		args[i] === _ || args[i] === ___
 	) return fixArgs(fn, args, scope);
 	
-	if (call === _) {
-		return fn.apply(scope || this, args);
-	}
-	return function _ified () {
-		return curry(fn, args.concat(arr(arguments,0)), scope || this, _);
-	};
+	return call === _
+		? fn.apply(scope || this, args);
+	 	: function _ified () {
+			return curry(fn, args.concat(arr(arguments,0)), scope || this, _);
+		};
 };
 
 function fixArgs (fn, fixedArgs, scope) { return function _ified () {
