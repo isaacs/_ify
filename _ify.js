@@ -22,7 +22,8 @@ ___.unload = _.unload = unload;
 
 // you know when you say a word 1000 times and it loses all meaning?
 function unload () {
-	if (!saved.loaded) return {_:_, ___:___, load:load, unload:unload};
+	var ret = {_:_, ___:___, load:load, unload:unload};
+	if (!saved.loaded) return ret;
 	saved.loaded = false;
 	["_", "___"].forEach(function (symbol) {
 		for (var t in saved.targets) if (saved.targets.hasOwnProperty(t)) {
@@ -31,7 +32,7 @@ function unload () {
 			else delete target[symbol];
 		}
 	});
-	return {_:_, ___:___, load:load, unload:unload};
+	return ret;
 };
 unload.load = function (symbols) {
 	return unload().load(symbols);
