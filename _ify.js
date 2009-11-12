@@ -101,11 +101,12 @@ function fixArgs (fn, fixedArgs, scope) { return function _ified () {
 		f ++
 	) if (
 		fixedArgs[f] === _ // fill with 1
+		|| fixedArgs[f] === ___ && arguments[a] === ___ // fill a big hole with a big hole.
 	) newArgs.push(a < al ? arguments[a++] : _);
 	else if (
 		fixedArgs[f] === ___ // fill with the rest
 	) newArgs = newArgs.concat(
-		a < al && arguments[a] !== ___ ? arr(arguments, a)
+		a < al ? arr(arguments, a)
 		: ___
 	), a = al;
 	else newArgs.push(fixedArgs[f]);
