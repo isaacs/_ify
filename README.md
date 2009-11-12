@@ -37,14 +37,20 @@ in general, doing .\_() just needs to happen once.	doing it a second time is unn
 	f._(_,_,_)(1,_,2)(3) ==> f._(1,_,2)(3) ==> f(1,3,2)
 	f._(_,1)(2,3,4) ==> f(2,1,3,4) additional args are appended to list.
 	f._(___,_,1) ==> additional args go in the ___ member, if one is provided.
-	f._(___,_,1)(2) ==> f._(___,2,1) right-hand curried with 2,1
-	f._(___,_,1)(2)(3,4,5) ==> f._(___,2,1)(3,4,5) ==> f(3,4,5,2,1)
+	f._(___,1)(___,2)(3,4,5) ==> f._(___,1,2)(3,4,5) a big hole fills a big hole
+	f._(___,_,1)(___,2) ==> f._(___,2,1) right-hand curried with 2,1
+	f._(___,_,1)(___,2)(3,4,5) ==> f._(___,2,1)(3,4,5) ==> f(3,4,5,2,1)
 	f._(___,1,2) is just like Y.rbind(f, null, 1, 2)
-	f._(1,___,_,2)(3,4,5) ==> f._(1,___,3,2)(4,5) ==> f(1,4,5,3,2)
+	f._(1,___,_,2)(___,3)(4,5) ==> f._(1,___,3,2)(4,5) ==> f(1,4,5,3,2)
 
 extra args will go into the first \_\_\_ that is found. so, if there are two, you have to call it twice.
 
 	f._(___,___)(1,2)(3,4,5) ==> f._(1,2,___)(3,4,5) ==> f(1,2,3,4,5)
+
+You can use \_\_\_ to dig a hole deeper.
+
+	f._(_,1)(___,2)(3,4,5) ==> f._(___,1,2)(3,4,5) ==> f(3,4,5,1,2)
+	f._(_)(___,1)(2,3,4) ==> f._(___,1)(2,3,4) ==> f(2,3,4,1)
 
 furthermore...
 
