@@ -94,7 +94,7 @@ And of course, this works, too:
 That's fine.  You can use the \_.load and \_.unload functions to swap out new symbols.  Maybe you like
 to call them $ and $$$ instead of \_ and \_\_\_.  Great.  Just do this:
 
-	\_.unload.load({\_:"$", \_\_\_:"$$$"})
+	_.unload.load({_:"$", ___:"$$$"})
 
 Any string is fine, but some will lead to uglier code, of course.  This is not pretty:
 
