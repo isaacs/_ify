@@ -111,11 +111,17 @@ and then \_ is at `myUnderscore._` and \_\_\_ is on `myUnderscore.___`, and you 
 them just as if they were the globals.  For example:
 
 	_.unload.load({ _ : "$", ___ : "derp" }); // unload the globals, and load the new ones.
-	$(f)(1,2,3) ==> f(1,2,3)
+	$(f)(1,2,3)() ==> f(1,2,3)
 	$(f)(1,$,2)(3) ==> f(1,3,2)
 	f.$(1,$,2)(3,$)($,4)(5) ==> f.$(1,3,2,$)($,4)(5) ==> f.$(1,3,2,$,4)(5) ==> f(1,3,2,5,4)
 	f.derp(obj, $, 1)(2) ==> f.call(obj, 2, 1)
 	f.$(derp, 1, 2)(4,5,6) ==> f(4,5,6,1,2)
+	
+	// of course, this means you can't do f._() or f.___()
+	var y = _.unload();
+	y._(f)(1,2,3)() ==> f(1,2,3)
+	y.___(f, obj)(1,2,3)() ==> f.call(obj, 1,2,3)
+	y._(f, y.___, 1, 2, y._)(3,4,5)(6) ==> f(3,4,5,1,2,6)
 
 Basically, you'd just be changing the symbol that's used in all the examples below.  From now on, I'm going to use `_` and `___`, because think those are prettiest.
 
