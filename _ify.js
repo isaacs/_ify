@@ -115,4 +115,13 @@ function fixArgs (fn, fixedArgs, scope) { return function _ified () {
 
 function arr (a, i) { return Array.prototype.slice.call(a, i || 0) };
 
+// lame accomodation to crap browsers.
+if (!Array.prototype.forEach) Array.prototype.forEach = function (fn, thisp) {
+	for (
+		var i = 0, l = this.length; i < l; i ++
+	) if (
+		i in this
+	) fn.call(thisp, this[i], i, this);
+};
+
 })();
