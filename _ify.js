@@ -86,7 +86,7 @@ function curry (fn, args, scope, call) {
 	) return fixArgs(fn, args, scope);
 	
 	return call === _
-		? fn.apply(scope || this, args);
+		? fn.apply(scope || this, args)
 	 	: function _ified () {
 			return curry(fn, args.concat(arr(arguments,0)), scope || this, _);
 		};
