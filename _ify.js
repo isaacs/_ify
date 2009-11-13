@@ -72,7 +72,7 @@ function shared (u, origArgs, me, fn, scope) {
 	);
 	// make _(fn,1,2) identical to fn._(1,2) or _(fn)(1,2)
 	return (origArgs.length > (scope?2:1)) 
-		? curry(origArgs[0], arr(origArgs, scope?1:0), scope && origArgs[0])
+		? curry(origArgs[0], arr(origArgs, scope?1:0), scope && origArgs[1])
 		: function _ified () {
 			return u.apply(origArgs[0], arr(origArgs, 1).concat(arr(arguments,0)));
 		};
