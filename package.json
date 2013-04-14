@@ -1,0 +1,6 @@
+{"name":"underscorify"
+,"description":"an itty bitty curry utility"
+,"version":"1.0.0"
+,"author":"Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me/)"
+,"repository":"https://github.com/isaacs/_ify.git"
+,"main":"./_ify.js"}
