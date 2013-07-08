@@ -3,4 +3,5 @@
 ,"version":"1.0.0"
 ,"author":"Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me/)"
 ,"repository":"https://github.com/isaacs/_ify.git"
+,"license":"BSD"
 ,"main":"./_ify.js"}
